@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flask Text Splitter</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+    }
+    .container {
+      background: white;
+      padding: 20px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+    textarea {
+      resize: none;
+    }
+    .premium-button {
+      background: linear-gradient(90deg, #667eea, #764ba2);
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center h-screen bg-gray-100">
+  <div class="container w-full max-w-7xl rounded-lg mx-10">
+    <div class="header flex items-center justify-between mb-6">
+      <h1 class="text-2xl font-semibold">Text Splitter</h1>
+      <button class="premium-button text-white px-4 py-2 rounded-lg shadow-lg">Upgrade to Premium</button>
+    </div>
+    <form method="post" id="text-form">
+      <div class="content flex justify-between mb-6">
+        <textarea name="left_text" placeholder="Enter or paste your text and press 'Submit'."
+                  class="w-1/2 h-72 p-3 mr-3 border border-gray-300 rounded-lg shadow-inner">{{ left_text }}</textarea>
+        <textarea name="right_text" class="w-1/2 h-72 p-3 ml-3 border border-gray-300 rounded-lg shadow-inner" readonly>{{ right_text }}</textarea>
+      </div>
+      <div class="buttons flex justify-center">
+        <button type="submit" class="bg-green-500 text-white px-5 py-2 rounded-lg shadow-lg hover:bg-green-600">Submit</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.addEventListener('keydown', function(event) {
+      if (event.ctrlKey && event.key === 'Enter') {
+        document.getElementById('text-form').submit();
+      }
+    });
+  </script>
+</body>
+</html>
